@@ -1,0 +1,154 @@
+/*.card-container {*/
+/*  display: grid;*/
+/*  grid-template-columns: 1fr 1fr 1fr 1fr;*/
+/*}*/
+
+.card .border-info .mb-3 {
+  max-width: 20rem;
+}
+
+.card-container .card {
+  margin: 0 1%;
+}
+
+div.tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tabs .tabs-pane {
+  margin: 1%;
+  padding-bottom: 0.5%;
+  cursor: pointer;
+  list-style: none;
+}
+
+.tabs .tabs-pane span {
+  color: cadetblue;
+  font-size: 1.5rem;
+}
+
+.tabs .tabs-pane.active {
+  border-bottom: 1px solid cadetblue;
+}
+
+.tab-content {
+  width: 50%;
+  margin: auto;
+}
+
+.card-title span {
+  font-weight: bold;
+  color: #78c2ad;
+}
+
+form fieldset {
+  border: 1px solid;
+  padding: 5%;
+  border-radius: 5px;
+  margin-bottom: 5%;
+}
+
+form fieldset legend {
+  padding: 0 1%;
+  width: auto;
+  /*color: #ed9e37;*/
+}
+
+.tabs ul {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+
+.centered{
+  position: relative;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+.modalBackground {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(200, 200, 200);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer {
+  width: 500px;
+  height: 500px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+/*.modalContainer .title {*/
+/*  display: inline-block;*/
+/*  text-align: center;*/
+/*  margin-top: 10px;*/
+/*}*/
+
+.titleCloseBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.titleCloseBtn button {
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.modalContainer .body {
+  flex: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7rem;
+  text-align: center;
+}
+
+.modalContainer .footer {
+  flex: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer .footer button {
+  width: 150px;
+  height: 45px;
+  margin: 10px;
+  border: none;
+  background-color: cornflowerblue;
+  color: white;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#cancelBtn {
+  background-color: crimson;
+}
+
+.form-inputs p {
+  color: red;
+}
+
+.horizontal-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
