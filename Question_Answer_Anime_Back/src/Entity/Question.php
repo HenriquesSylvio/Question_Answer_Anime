@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
-use App\Controller\ImageToVideoController;
+use App\Controller\CreateMediaObjectAction;
+use App\Controller\QuestionsController;
 use App\Repository\QuestionRepository;
+use App\Service\FileUploaderController;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiProperty;
+
 
 /**
  * @ApiResource()
@@ -21,41 +23,40 @@ class Question
      */
     private $id;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $question;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Question;
+    private $answer1;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $VideoPath;
+    private $answer2;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Answer1;
+    private $answer3;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Answer2;
+    private $answer4;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Answer3;
+    private $goodAnswer;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
-    private $Answer4;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $GoodAnswer;
+    private $videoUrl;
 
     public function getId(): ?int
     {
@@ -64,84 +65,84 @@ class Question
 
     public function getQuestion(): ?string
     {
-        return $this->Question;
+        return $this->question;
     }
 
-    public function setQuestion(string $Question): self
+    public function setQuestion(string $question): self
     {
-        $this->Question = $Question;
-
-        return $this;
-    }
-
-    public function getVideoPath(): ?string
-    {
-        return $this->VideoPath;
-    }
-
-    public function setVideoPath(string $VideoPath): self
-    {
-        $this->VideoPath = $VideoPath;
+        $this->question = $question;
 
         return $this;
     }
 
     public function getAnswer1(): ?string
     {
-        return $this->Answer1;
+        return $this->answer1;
     }
 
-    public function setAnswer1(string $Answer1): self
+    public function setAnswer1(string $answer1): self
     {
-        $this->Answer1 = $Answer1;
+        $this->answer1 = $answer1;
 
         return $this;
     }
 
     public function getAnswer2(): ?string
     {
-        return $this->Answer2;
+        return $this->answer2;
     }
 
-    public function setAnswer2(string $Answer2): self
+    public function setAnswer2(string $answer2): self
     {
-        $this->Answer2 = $Answer2;
+        $this->answer2 = $answer2;
 
         return $this;
     }
 
     public function getAnswer3(): ?string
     {
-        return $this->Answer3;
+        return $this->answer3;
     }
 
-    public function setAnswer3(string $Answer3): self
+    public function setAnswer3(string $answer3): self
     {
-        $this->Answer3 = $Answer3;
+        $this->answer3 = $answer3;
 
         return $this;
     }
 
     public function getAnswer4(): ?string
     {
-        return $this->Answer4;
+        return $this->answer4;
     }
 
-    public function setAnswer4(string $Answer4): self
+    public function setAnswer4(string $answer4): self
     {
-        $this->Answer4 = $Answer4;
+        $this->answer4 = $answer4;
 
         return $this;
     }
 
     public function getGoodAnswer(): ?string
     {
-        return $this->GoodAnswer;
+        return $this->goodAnswer;
     }
 
-    public function setGoodAnswer(string $GoodAnswer): self
+    public function setGoodAnswer(string $goodAnswer): self
     {
-        $this->GoodAnswer = $GoodAnswer;
+        $this->goodAnswer = $goodAnswer;
+
+        return $this;
+    }
+
+    public function getVideoUrl(): ?string
+    {
+        return $this->videoUrl;
+    }
+
+    public function setVideoUrl(string $videoUrl): self
+    {
+        $this->videoUrl = $videoUrl;
 
         return $this;
     }
