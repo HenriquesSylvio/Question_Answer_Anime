@@ -2,11 +2,6 @@ import React from 'react';
 import { saveAs } from "file-saver";
 
 const Homepage = ({history}) => {
-    const saveFile = () => {
-        saveAs(
-            "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
-        );
-    };
     return (
         <div>
             <h1 className="text-black text-center mt-3">
@@ -17,7 +12,7 @@ const Homepage = ({history}) => {
             </h2>
             <div className="row">
                 <div className="col-lg test1">
-                    <a href={"#/numberQuestion/"}>
+                    <a href={"#/question/"}>
                         <button type="submit" className="btn btn-primary container">Jouer !</button>
                     </a>
                 </div>
@@ -27,7 +22,6 @@ const Homepage = ({history}) => {
                     </a>
                 </div>
             </div>
-            <button onClick={saveFile}>download</button>
             {/*<a href='https://media.trace.moe/video/21034/%5BLeopard-Raws%5D%20Gochuumon%20wa%20Usagi%20Desu%20ka%202nd%20-%2001%20RAW%20(KBS%201280x720%20x264%20AAC).mp4?t=290.625&token=AnrHqEaHe5nW7Ce9BXiEUWUmLPA' download>Click to download</a>*/}
 
             {/*<table className="center">*/}

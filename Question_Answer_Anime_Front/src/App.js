@@ -16,7 +16,7 @@ function App() {
             <Route exact path='/' component={Homepage}/>
               <Route exact path='/createQuestion' component={CreateQuestion}/>
               <Route exact path='/numberQuestion' component={NumberQuestion}/>
-              <Route exact path='/Question/:id' component={Question}/>
+              <Route exact path='/question/' component={Question}/>
           </Switch>
         {/*</div>*/}
       </HashRouter>
