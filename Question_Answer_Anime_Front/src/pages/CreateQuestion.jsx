@@ -1,94 +1,65 @@
-import React, { Component } from 'react'
+import React, {useEffect, useState} from 'react';
 import axios from 'axios'
 import { toast } from 'react-toastify';
 
 import ReactPlayer from 'react-player'
+import {getVideo} from "../services/getVideo";
 
-class CreateQuestion extends Component {
-    // constructor(props) {
-    //     super(props)
-    //
-    //     this.state = {
-    //         video: [],
-    //         videoUrl: '',
-    //     }
-    // }
+const CreateQuestion = ({history}) => {{
 
-    async getVideo(urlImage) {
-        const url = "https://api.trace.moe/search?url=" + urlImage
-        await axios.get(url)
-            .then(response => {
-                console.log(response.data['result'][0]['video'])
-                this.setState({url: response.data['result'][0]['video']})
-            })
+    const [values, setValues] = useState({
+        question: '',
+        answer1: '',
+        answer2: '',
+        answer3: '',
+        answer4: '',
+        videoUrl: '',
+        url:''
+    });
 
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setValues({
+            ...values,
+            [name]: value
+        });
+    };
 
-            .catch(error => {
-                console.log(error)
-            })
-    }
+    useEffect(async () => {
+            // if (Object.keys(errors).length === 0 && isSubmitting) {
+                console.log(values);
+                try {
 
-    async addQuestion(credentials) {
-        const url = `http://127.0.0.1:8000/api/question`
-        // await axios.get("http://127.0.0.1:8000/api/posts/12")
-        //     .then(response => {
-        //         console.log(response)
-        //         this.setState({post: response.data['hydra:member']})
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-        //     })
-        await axios
-            .post(url, credentials);
-    }
-
-    async getVideo(urlImage) {
-        const url = "https://api.trace.moe/search?url=" + urlImage
-        await axios.get(url)
-            .then(response => {
-                console.log(response.data['result'][0]['video'])
-                this.setState({url: response.data['result'][0]['video']})
-            })
-
-
-            .catch(error => {
-                console.log(error)
-            })
+                    // const response = await addQuestion(values);
+                    // history.replace('/login')
+                    // toast.success('Création du compte réussi ! 😄')
+                } catch ({response}) {
+                    // toast.error(response.data.violations[0].message + " ! 😃")
+                    //"Un problème est survenu lors de la création de votre compte, veuillez réessayer ! 😃"
+                    // console.log(response.data.violations[0].message)
+                }
+            // }
         }
+    );
 
-    constructor(props){
-        super(props);
-
-        this.state = {
-            inputValue : "",
-            url:"",
-            video:[]
-        }
-    }
-
-    handleChange = (event)=>{
-        this.setState({inputValue : event.target.value})
-    }
-
-    handleSubmit = (event) =>{
+    const handleClick = (event)=> {
         event.preventDefault();
-        this.getVideo(this.state.inputValue);
-        // this.setState({url: this.video['result'][0]['video']})
+        const urlVideo = getVideo("https://bleachmx.fr/wp-content/uploads/Demon-Slayer-Kimetsu-No-Yaiba-Saison-2-episode-14-780x439.jpg")
     }
-
-    render () {
         return(
         <div className="center">
             <h1 className="text-black text-center mt-3">
                 Création d'une question
             </h1>
-            <form className="form-profile text-black container" onSubmit={this.handleSubmit}>
+            <form className="form-profile text-black container" >
                 <div className="form-group my-2">
                     <label htmlFor="question">Question :</label><input
                     type="text"
                     name="question"
                     className="form-control"
                     id="question"
+                    value={values.question}
+                    onChange={handleChange}
                 />
                 </div>
                 <label htmlFor="answer1">Reponse 1 :</label>
@@ -98,8 +69,10 @@ class CreateQuestion extends Component {
                     name="answer1"
                     className="form-control"
                     id="answer1"
+                    value={values.answer1}
+                    onChange={handleChange}
                     />
-                    <input type="radio" name="goodAnswer"/>
+                    <input type="radio" name="goodAnswer" id="1"/>
                 </div>
                 <label htmlFor="answer2">Reponse 2 :</label>
                 <div className="form-group my-2 input-group">
@@ -109,8 +82,10 @@ class CreateQuestion extends Component {
                     className="form-control"
                     id="answer2"
                     // placeholder="mail@mail.fr"
+                    value={values.answer2}
+                    onChange={handleChange}
                     />
-                    <input type="radio" name="goodAnswer" />
+                    <input type="radio" name="goodAnswer" id="2" />
                 </div>
                 <label htmlFor="answer3">Reponse 3 :</label>
                 <div className="form-group my-2 input-group">
@@ -120,8 +95,10 @@ class CreateQuestion extends Component {
                     className="form-control"
                     id="answer3"
                     // placeholder="mail@mail.fr"
+                    value={values.answer3}
+                    onChange={handleChange}
                     />
-                    <input type="radio" name="goodAnswer" />
+                    <input type="radio" name="goodAnswer" id="3" />
                 </div>
                 <label htmlFor="answer4">Reponse 4 :</label>
                 <div className="form-group my-2 input-group">
@@ -130,9 +107,11 @@ class CreateQuestion extends Component {
                         name="answer4"
                         className="form-control"
                         id="answer4"
+                        value={values.answer4}
+                        onChange={handleChange}
                         // placeholder="Mot de passe"
                     />
-                    <input type="radio" name="goodAnswer" />
+                    <input type="radio" name="goodAnswer" id="4" />
                 </div>
                 {/*<div className="form-group my-2">*/}
                 {/*    <label>Url image :</label>*/}
@@ -154,19 +133,19 @@ class CreateQuestion extends Component {
                 <label>Url image :</label>
                 <div className="input-group mb-3">
                     <input type="text" className="form-control" placeholder="Recipient's username"
-                           aria-label="Recipient's username" aria-describedby="button-addon2"
-                           onChange={this.handleChange}/>
-                        <button className="btn btn-primary" type="submit" id="button-addon2">Valider</button>
+                           aria-label="Recipient's username" aria-describedby="button-addon2" name="imageUrl" value={values.imageUrl}
+                           onChange={handleChange}/>
+                        <button className="btn btn-primary" type="button" id="button-addon2" onClick={handleClick}>Valider</button>
                 </div>
 
                 {/*<video width="320" height="240" controls className="horizontal-center">*/}
                 {/*    <source src={this.videoUrl} type="video/ogg"/>*/}
                 {/*</video>*/}
                 <div className="horizontal-center" >
-                    <ReactPlayer classname="center" url={this.state.url} controls={true} />
+                    <ReactPlayer classname="center" url= controls={true} />
                 </div>
                 <div className="modal-footer">
-                    <button type="button" className="btn btn-outline-primary">
+                    <button type="submit" className="btn btn-outline-primary">
                         Créer la question
                     </button>
                 </div>
